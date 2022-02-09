@@ -16,6 +16,9 @@ export default {
 
 <style>
 .total {
-  border: 1px blue solid;
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
 }
 </style>

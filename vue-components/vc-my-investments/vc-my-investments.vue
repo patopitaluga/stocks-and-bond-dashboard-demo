@@ -1,5 +1,8 @@
 <script>
 export default {
+  props: {
+    vpItems: Array,
+  },
   data() {
     return {
       greeting: 'Hello World!'
@@ -14,8 +17,11 @@ export default {
     <p>Caja de ahorro</p>
 
     <p>Bonos</p>
-    <ul>
-      <li>BOCAN 2022 (x unidades)</li>
+    <ul
+      v-for="_eachItem in vpItems"
+      :key="_eachItem.name"
+    >
+      <li>{{ _eachItem.name }}</li>
     </ul>
 
     <p>Acciones</p>
@@ -27,6 +33,9 @@ export default {
 
 <style>
 .my-investments {
-  border: 1px black solid;
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
 }
 </style>

@@ -4,3 +4,6 @@
 - 4 Also set body-parser to be able to read POST variables easily.
 - 5 Setup webpack.config.js and dependencies to build vue components and sass
 - 6 Set a couple of demo Vue components to be sure that the build process is working fine
+- 7 Set an initial grid design to be able to view components while developing
+- 8 Set fetch strategy to get information from api. The root component will fetch all the information and will pass it to components as props.
+- 9 Initial fetch of placeholder hardcoded endpoint to test pipeline

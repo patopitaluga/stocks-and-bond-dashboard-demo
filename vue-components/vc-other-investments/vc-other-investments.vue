@@ -16,6 +16,9 @@ export default {
 
 <style>
 .other-investments {
-  border: 1px purple solid;
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 8px 16px;
 }
 </style>
