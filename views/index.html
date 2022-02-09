@@ -4,19 +4,35 @@
 <meta charset="utf-8"/>
 <title>Show me the money!</title>
 
-<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover"/>
+<meta
+  name="viewport"
+  content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover"
+/>
 
+<style>
+  [v-cloak] {
+    display: none !important
+  }
+  /* Hide Vue while loading */
+</style>
 <link rel="stylesheet" href="/dist/style.css"/>
 </head>
 <body>
 <div id="app-container">
-  123 {{ vdHelloWorld }}
-  <my-investments>
-  </my-investments>
-  <other-investments>
-  </other-investments>
-  <total>
-  </total>
+  <div class="container">
+    <aside class="sidebar">
+      <my-investments
+        :vp-items="vdMyInvestments"
+      >
+      </my-investments>
+      <other-investments>
+      </other-investments>
+    </aside>
+    <main class="main">
+      <total>
+      </total>
+    </main>
+  </div>
 </div>
 <script src="/dist/script.js"></script>
 </body>
