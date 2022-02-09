@@ -3,3 +3,4 @@
 - 3 Setup express server to serve public files, frontend routes sending an html file and a demo api endpoint.
 - 4 Also set body-parser to be able to read POST variables easily.
 - 5 Setup webpack.config.js and dependencies to build vue components and sass
+- 6 Set a couple of demo Vue components to be sure that the build process is working fine
