@@ -1,0 +1,2 @@
+- 1 Setup new node project with npm init. Setup gitignore and README.md documentation
+- 2 install express server
