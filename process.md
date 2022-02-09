@@ -1,2 +1,5 @@
-- 1 Setup new node project with npm init. Setup gitignore and README.md documentation
-- 2 install express server
+- 1 Setup new node project with npm init. Setup gitignore and README.md documentation.
+- 2 install express server.
+- 3 Setup express server to serve public files, frontend routes sending an html file and a demo api endpoint.
+- 4 Also set body-parser to be able to read POST variables easily.
+- 5 Setup webpack.config.js and dependencies to build vue components and sass
