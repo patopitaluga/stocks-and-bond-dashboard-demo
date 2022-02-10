@@ -8,8 +8,8 @@ const fakeDb = require('../../database/fake-db-for-demo.js');
  * @param {object} _res - Http response
  */
 module.exports = async(_req, _res) => {
-  setTimeout(fakeDelayToDisplayLoading, 2000);
+  setTimeout(fakeDelayToDisplayLoading, 1500);
   function fakeDelayToDisplayLoading() {
-    _res.send(fakeDb.myPortfolio);
+    _res.send(fakeDb.getMyPortfolio());
   };
 };

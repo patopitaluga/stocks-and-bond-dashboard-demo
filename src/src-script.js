@@ -40,7 +40,9 @@ const showMeTheMoneyApp = createApp({
           const responseObject = await _responseRaw.json();
           vdUserSavings.value = responseObject.savings;
           vdUserInvestments.value = responseObject.investments;
-          if (vdDisplayingItem.value._id) vdDisplayingItem.value = responseObject.investments.find((_eachInvestment) => _eachInvestment._id === vdDisplayingItem.value._id);
+          // if already displaying one item, update it
+          if (vdDisplayingItem && vdDisplayingItem.value && vdDisplayingItem.value._id)
+            vdDisplayingItem.value = responseObject.investments.find((_eachInvestment) => _eachInvestment._id === vdDisplayingItem.value._id);
         })
         .catch((_err) => {
           console.log(_err);
@@ -100,7 +102,17 @@ showMeTheMoneyApp.config.globalProperties.$filters = {
    */
   fltrFormatMoney(_value) {
     if (!_value) return '';
-    return '$' + (_value / 100).toFixed(2).replace('.', ',');
+    let valueAsString = (_value / 100).toFixed(2).replace('.', ',');
+    const parts = valueAsString.split(',');
+    const integerPart = String(parts[0])
+    let intergerPartWithThousandSeparator = '';
+    let countUp = 0;
+    for (let r = integerPart.length - 1; r >= 0; r--) {
+      const thousandSeparator = (countUp > 0 && countUp % 3 === 0) ? '.' : ''
+      intergerPartWithThousandSeparator = integerPart[r] + thousandSeparator + intergerPartWithThousandSeparator;
+      countUp++;
+    }
+    return '$ ' + intergerPartWithThousandSeparator  + ',' + String(parts[1]);
   },
 };
 

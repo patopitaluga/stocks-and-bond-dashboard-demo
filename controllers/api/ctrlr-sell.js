@@ -13,7 +13,7 @@ module.exports = async(_req, _res) => {
   if (!_req.body.amount) return _res.status(400).send({ status: 'Missing amount POST param.', });
   if (typeof _req.body.amount !== 'number') return _res.status(400).send({ status: 'amount POST param should be a number.', });
 
-  fakeDb.addSubscribed(_req.body.itemId, _req.body.amount);
+  fakeDb.sellSubscribed(_req.body.itemId, _req.body.amount);
 
   setTimeout(fakeDelayToDisplayLoading, 1500);
   function fakeDelayToDisplayLoading() {

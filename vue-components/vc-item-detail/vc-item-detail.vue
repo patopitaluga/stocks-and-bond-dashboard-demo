@@ -14,6 +14,8 @@ export default {
      * Triggered on @click on the buy button.
      */
     const mtdBuy = () => {
+      if (!vdBuyAmount.value) return;
+
       vdNotifyAction.value = 'Operación en proceso…';
       fetch('/api/buy', {
         method: 'POST',
@@ -26,6 +28,8 @@ export default {
         }),
       })
         .then(async(_responseRaw) => {
+          vdBuyAmount.value = 0;
+          vdSellAmount.value = 0;
           vdNotifyAction.value = 'Operación realizada.';
           setTimeout(() => { vdNotifyAction.value = ''; }, 2000);
 
@@ -33,6 +37,8 @@ export default {
         })
         .catch((_err) => {
           console.log(_err);
+          vdNotifyAction.value = 'La operación no se pudo realizar.';
+          setTimeout(() => { vdNotifyAction.value = ''; }, 2000);
         });
     };
 
@@ -40,6 +46,8 @@ export default {
      * Triggered on @click on the sell button.
      */
     const mtdSell = () => {
+      if (!vdSellAmount.value) return;
+
       vdNotifyAction.value = 'Operación en proceso…';
       fetch('/api/sell', {
         method: 'POST',
@@ -48,10 +56,12 @@ export default {
         },
         body: JSON.stringify({
           itemId: _props.vpItem._id,
-          amount: Number(vdBuyAmount.value),
+          amount: Number(vdSellAmount.value),
         }),
       })
         .then(async(_responseRaw) => {
+          vdBuyAmount.value = 0;
+          vdSellAmount.value = 0;
           vdNotifyAction.value = 'Operación realizada.';
           setTimeout(() => { vdNotifyAction.value = ''; }, 2000);
 
@@ -59,13 +69,42 @@ export default {
         })
         .catch((_err) => {
           console.log(_err);
+          vdNotifyAction.value = 'La operación no se pudo realizar.';
+          setTimeout(() => { vdNotifyAction.value = ''; }, 2000);
         });
+    };
+
+    /**
+     * Triggered on @change on the sell amount input.
+     */
+    const mtdDisallowMaxSell = () => {
+      if (vdSellAmount.value > _props.vpItem.amountSubscribed)
+        vdSellAmount.value = _props.vpItem.amountSubscribed;
+    };
+
+    /**
+     * To display the type stock/bond as string.
+     *
+     * @param {string} _type -
+     *
+     */
+    const fltrDisplayType = (_typeEnum) => {
+      switch (_typeEnum) {
+        case 'stock':
+          return 'Acción';
+        case 'bond':
+          return 'Bono';
+        default:
+          return '';
+      }
     };
 
     return {
       vdNotifyAction,
       vdBuyAmount,
       vdSellAmount,
+      fltrDisplayType,
+      mtdDisallowMaxSell,
       mtdSell,
       mtdBuy,
       mtdSell,
@@ -79,9 +118,9 @@ export default {
     v-if="vpItem && vpItem.name"
     class="detail"
   >
-    <p>{{ vpItem.type }}</p>
+    <p>{{ fltrDisplayType(vpItem.type) }}</p>
     <p>{{ vpItem.name }}</p>
-    <p>Cotización: {{ $filters.fltrFormatMoney(vpItem.currentValue) }}/unidad</p>
+    <p>Cotización: {{ $filters.fltrFormatMoney(vpItem.currentValue) }} / unidad</p>
 
     <p
       v-if="vdNotifyAction"
@@ -90,15 +129,17 @@ export default {
 
     <div v-if="!vdNotifyAction">
       <p v-if="vpItem.amountSubscribed">Cantidad adquirida: {{ vpItem.amountSubscribed }} unidades</p>
-      <p v-if="vpItem.amountSubscribed">Valor total: {{ $filters.fltrFormatMoney(vpItem.amountSubscribed * vpItem.currentValue) }} unidades</p>
+      <p v-if="vpItem.amountSubscribed">Valor total: {{ $filters.fltrFormatMoney(vpItem.amountSubscribed * vpItem.currentValue) }}</p>
 
       <p>Comprar</p>
       <input
         type="number"
         v-model="vdBuyAmount"
+        min="0"
       />
       <button
         v-if="vdBuyAmount > 0"
+        class="btn"
         type="button"
         @click="mtdBuy"
       >
@@ -110,9 +151,13 @@ export default {
         <input
           type="number"
           v-model="vdSellAmount"
+          min="0"
+          :max="vpItem.amountSubscribed"
+          @change="mtdDisallowMaxSell"
         />
         <button
           v-if="vdSellAmount > 0"
+          class="btn"
           type="button"
           @click="mtdSell"
         >

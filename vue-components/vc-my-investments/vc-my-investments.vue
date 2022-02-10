@@ -40,6 +40,7 @@ export default {
     >
       <li class="my-investments__items">
         <button
+          class="my-investments__items__name"
           type="button"
           @click="$emit('selected', _eachItem)"
         >{{ _eachItem.name }}</button>
@@ -83,10 +84,22 @@ export default {
   padding-top: 4px;
 }
 
+.my-investments__items__name {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
+}
+
 .my-investments__items__subscribed {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
   margin-left: auto;
   margin-right: 0;
   min-width: 95px;
+  padding: 0;
   text-align: right;
 }
 </style>
