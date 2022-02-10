@@ -1,5 +1,6 @@
 <script>
-import { computed, ref, watch } from 'vue';
+import { computed, onMounted, ref, watch } from 'vue';
+
 import { initPieChart } from './vc-total__pie-chart';
 
 export default {
@@ -13,12 +14,15 @@ export default {
         .reduce((_sum, _eachInvestment) => _sum + _eachInvestment.currentValue, 0);
     });
 
-    if (_props.vpPortfolio && _props.vpPortfolio.length > 0)
-      initPieChart(_props.vpPortfolio);
     watch(() => _props.vpPortfolio, (_newVal) => { // Since the prop might be empty initially because of race condition.
       initPieChart(_newVal);
     });
     window.addEventListener('resize', () => initPieChart(_props.vpPortfolio));
+
+    onMounted(() => {
+      if (_props.vpPortfolio && _props.vpPortfolio.length > 0)
+        initPieChart(_props.vpPortfolio);
+    });
 
     return {
       cptdTotal,

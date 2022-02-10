@@ -74,7 +74,16 @@ const showMeTheMoneyApp = createApp({
     });
 
     /**
-     * Triggered on @selected on the my investments.
+     * Triggered on @showtotal on the my investments component to display total component again.
+     *
+     * @param {object} _itemToBeDisplayed
+     */
+    const mtdShowTotal = (_itemToBeDisplayed) => {
+      vdDisplayingItem.value = {};
+    };
+
+    /**
+     * Triggered on @selected on the my investments component.
      *
      * @param {object} _itemToBeDisplayed
      */
@@ -102,6 +111,7 @@ const showMeTheMoneyApp = createApp({
       vdAvailableInvestments,
       vdDisplayingItem,
       mtdShowDetail,
+      mtdShowTotal,
       mtdShowDetailFromAv,
       mtdFetchPortfolio,
     };
