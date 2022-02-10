@@ -6,6 +6,7 @@
  */
 const initPieChart = (_values) => {
   if (!_values) return;
+  if (!document.querySelector('#piechart')) return;
   const box = document.querySelector('#piechart');
   const width = box.clientWidth;
   const height = width;

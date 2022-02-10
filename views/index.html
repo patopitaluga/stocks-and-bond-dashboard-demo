@@ -24,18 +24,26 @@
       <my-investments
         :vp-savings="vdUserSavings"
         :vp-investments="vdUserInvestments"
+        @selected="mtdShowDetail"
       >
       </my-investments>
       <other-investments
         :vp-items="vdAvailableInvestments"
+        @selected="mtdShowDetail"
       >
       </other-investments>
     </aside>
     <main class="main">
       <total
+        v-if="!vdDisplayingItem || !vdDisplayingItem.name"
         :vp-portfolio="vdUserInvestments"
       >
       </total>
+      <item-detail
+        v-if="vdDisplayingItem && vdDisplayingItem.name"
+        :vp-item="vdDisplayingItem"
+      >
+      </item-detail>
     </main>
   </div>
 </div>
