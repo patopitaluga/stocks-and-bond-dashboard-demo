@@ -12,3 +12,4 @@
 - 12 Improve information presentation on screen just to see things clearly
 - 13 Insert pie chart to test space using d3 library, I'm setting it up using a cdn to speed up the development
 - 14 Added detail component to display individual stocks/bonds with option to buy
+- 15 Setup the ability of buying and the new status to be displayed in other components
