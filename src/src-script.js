@@ -25,9 +25,11 @@ const showMeTheMoneyApp = createApp({
     const vdDisplayingItem = ref(null); // Array
 
     /**
-     * Triggered on mounted
+     * Triggered on mounted and on @operation (buy/sale) in the detail component.
      */
-    const fetchInitialData = () => {
+    const mtdFetchPortfolio = () => {
+      vdUserSavings.value = null; // to display loading again if already fetched
+      vdUserInvestments.value = null;
       fetch('/api/user-portfolio', {
         method: 'GET',
         headers: {
@@ -38,6 +40,7 @@ const showMeTheMoneyApp = createApp({
           const responseObject = await _responseRaw.json();
           vdUserSavings.value = responseObject.savings;
           vdUserInvestments.value = responseObject.investments;
+          if (vdDisplayingItem.value._id) vdDisplayingItem.value = responseObject.investments.find((_eachInvestment) => _eachInvestment._id === vdDisplayingItem.value._id);
         })
         .catch((_err) => {
           console.log(_err);
@@ -64,7 +67,7 @@ const showMeTheMoneyApp = createApp({
     };
 
     onMounted(() => {
-      fetchInitialData();
+      mtdFetchPortfolio();
       fetchAvailableInvestments();
     });
 
@@ -83,6 +86,7 @@ const showMeTheMoneyApp = createApp({
       vdAvailableInvestments,
       vdDisplayingItem,
       mtdShowDetail,
+      mtdFetchPortfolio,
     };
   },
 });

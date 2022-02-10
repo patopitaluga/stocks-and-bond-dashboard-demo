@@ -42,6 +42,7 @@
       <item-detail
         v-if="vdDisplayingItem && vdDisplayingItem.name"
         :vp-item="vdDisplayingItem"
+        @operation="mtdFetchPortfolio"
       >
       </item-detail>
     </main>
