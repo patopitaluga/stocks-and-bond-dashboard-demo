@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node node_modules/webpack-cli/bin/cli.js --mode production",
     "start": "node server",
+    "dev": "node node_modules/nodemon/bin/nodemon.js app/server dev",
     "watch": "node node_modules/webpack-cli/bin/cli.js --watch"
   },
   "repository": {
@@ -27,6 +28,7 @@
     "@vue/compiler-sfc": "^3.2.30",
     "css-loader": "^6.6.0",
     "mini-css-extract-plugin": "^2.5.3",
+    "nodemon": "^2.0.15",
     "sass": "^1.49.7",
     "sass-loader": "^12.4.0",
     "vue": "^3.2.30",

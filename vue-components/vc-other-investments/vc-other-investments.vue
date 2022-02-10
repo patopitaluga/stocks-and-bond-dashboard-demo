@@ -3,14 +3,14 @@ export default {
   data() {
     return {
       greeting: 'Hello World!'
-    }
-  }
-}
+    };
+  },
+};
 </script>
 
 <template>
   <section class="other-investments">
-    <p>Otras inversiones</p>
+    <p>Inversiones disponibles</p>
   </section>
 </template>
 

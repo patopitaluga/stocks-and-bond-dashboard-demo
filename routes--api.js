@@ -1,3 +1,3 @@
 module.exports = (_app) => {
-  _app.get('/api/my-investments', require('./controllers/api/ctrlr-my-investments'));
+  _app.get('/api/user-portfolio', require('./controllers/api/ctrlr-user-portfolio'));
 };

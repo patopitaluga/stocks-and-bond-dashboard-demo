@@ -17,13 +17,14 @@ const showMeTheMoneyApp = createApp({
     'total': total,
   },
   setup() {
-    const vdMyInvestments = ref([]);
+    const vdUserSavings = ref(null); // Number
+    const vdUserInvestments = ref(null); // Array
 
     /**
      * Triggered on mounted
      */
     const fetchInitialData = () => {
-      fetch('/api/my-investments', {
+      fetch('/api/user-portfolio', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -31,7 +32,8 @@ const showMeTheMoneyApp = createApp({
       })
         .then(async(_responseRaw) => {
           const responseArray = await _responseRaw.json();
-          vdMyInvestments.value = responseArray;
+          vdUserSavings.value = responseArray.savings;
+          vdUserInvestments.value = responseArray.investments;
         })
         .catch((_err) => {
           console.log(_err);
@@ -43,10 +45,24 @@ const showMeTheMoneyApp = createApp({
     });
 
     return {
-      vdMyInvestments,
+      vdUserSavings,
+      vdUserInvestments,
     };
   },
 });
+
+showMeTheMoneyApp.config.globalProperties.$filters = {
+  /**
+   * Format money
+   *
+   * @param {number} _value - In cents.
+   * @return {string}
+   */
+  fltrFormatMoney(_value) {
+    if (!_value) return '';
+    return '$' + (_value / 100).toFixed(2).replace('.', ',');
+  },
+};
 
 showMeTheMoneyApp.mount('#app-container');
 

@@ -7,3 +7,4 @@
 - 7 Set an initial grid design to be able to view components while developing
 - 8 Set fetch strategy to get information from api. The root component will fetch all the information and will pass it to components as props.
 - 9 Initial fetch of placeholder hardcoded endpoint to test pipeline
+- 10 Set nodemon as npm run dev script since I'll be updating server endpoints a lot
