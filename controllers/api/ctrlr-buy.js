@@ -1,4 +1,3 @@
-const res = require('express/lib/response');
 const fakeDb = require('../../database/fake-db-for-demo.js');
 
 /**
