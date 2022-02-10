@@ -22,7 +22,8 @@
   "homepage": "https://github.com/patopitaluga/stocks-and-bond-dashboard-demo#readme",
   "dependencies": {
     "dotenv": "^16.0.0",
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "express-session": "^1.17.2"
   },
   "devDependencies": {
     "@vue/compiler-sfc": "^3.2.30",

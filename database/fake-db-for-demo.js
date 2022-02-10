@@ -1,22 +1,4 @@
 const fakeDb = {
-  myPortfolio: {
-    savings: 4200000, // in cents
-    investments: [
-      {
-        _id: 'a1',
-        amountSubscribed: 10,
-      },
-      {
-        _id: 'a3',
-        amountSubscribed: 15,
-      },
-      {
-        _id: 'a7',
-        amountSubscribed: 20,
-      },
-    ],
-  },
-
   availableInvestments: [
     {
       _id: 'a1',
@@ -71,12 +53,13 @@ const fakeDb = {
   /**
    * Used in the ctrlr-user-portfolio controller.
    *
+   * @param {object} _session - the _req.session express-session object.
    * @return {object} - the investments objects ready to be displayed.
    */
-  getMyPortfolio: function() {
+  getMyPortfolio: function(_session) {
     return {
-      savings: fakeDb.myPortfolio.savings,
-      investments: fakeDb.myPortfolio.investments.map((_eachElementInMyInvestments) => {
+      savings: _session.myPortfolio.savings,
+      investments: _session.myPortfolio.investments.map((_eachElementInMyInvestments) => {
         // each object is augmented to get current value.
         return {
           ..._eachElementInMyInvestments,
@@ -89,21 +72,22 @@ const fakeDb = {
   /**
    * Used in the ctrlr-buy controller.
    *
+   * @param {object} _session - the _req.session express-session object.
    * @param {string} _itemId -
    * @param {number} _amount -
    */
-  addSubscribed: (_itemId, _amount) => {
+  addSubscribed: (_session, _itemId, _amount) => {
     if (!_itemId) throw new Error('Missing _itemId argument.');
     if (!_amount) throw new Error('Missing _amount argument.');
     if (_amount === 0) return;
 
     const investment = fakeDb.availableInvestments.find((_eachInvestment) => _eachInvestment._id === _itemId);
 
-    const alreadySubscribed = fakeDb.myPortfolio.investments.find((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);
+    const alreadySubscribed = _session.myPortfolio.investments.find((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);
     if (alreadySubscribed)
       alreadySubscribed.amountSubscribed += _amount;
     else
-      fakeDb.myPortfolio.investments.push({
+      _session.myPortfolio.investments.push({
         amountSubscribed: _amount,
         _id: investment._id,
         name: investment.name,
@@ -111,28 +95,29 @@ const fakeDb = {
         currentValue: investment.currentValue,
       });
 
-    fakeDb.myPortfolio.savings -= _amount * investment.currentValue;
+    _session.myPortfolio.savings -= _amount * investment.currentValue;
   },
 
   /**
    * Used in the ctrlr-sell controller.
    *
+   * @param {object} _session - the _req.session express-session object.
    * @param {string} _itemId -
    * @param {number} _amount -
    */
-  sellSubscribed: (_itemId, _amount) => {
+  sellSubscribed: (_session, _itemId, _amount) => {
     if (!_itemId) throw new Error('Missing _itemId argument.');
     if (!_amount) throw new Error('Missing _amount argument.');
     if (_amount === 0) return;
 
     const investment = fakeDb.availableInvestments.find((_eachInvestment) => _eachInvestment._id === _itemId);
 
-    const alreadySubscribed = fakeDb.myPortfolio.investments.find((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);
+    const alreadySubscribed = _session.myPortfolio.investments.find((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);
     if (!alreadySubscribed) return; // catch the wrong query?
 
     alreadySubscribed.amountSubscribed -= _amount;
 
-    fakeDb.myPortfolio.savings += _amount * investment.currentValue;
+    _session.myPortfolio.savings += _amount * investment.currentValue;
   },
 };
 

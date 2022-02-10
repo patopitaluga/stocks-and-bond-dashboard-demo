@@ -10,6 +10,6 @@ const fakeDb = require('../../database/fake-db-for-demo.js');
 module.exports = async(_req, _res) => {
   setTimeout(fakeDelayToDisplayLoading, 1500);
   function fakeDelayToDisplayLoading() {
-    _res.send(fakeDb.getMyPortfolio());
+    _res.send(fakeDb.getMyPortfolio(_req.session));
   };
 };
