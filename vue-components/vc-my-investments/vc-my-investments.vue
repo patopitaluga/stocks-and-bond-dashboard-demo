@@ -19,7 +19,11 @@ export default {
 
 <template>
   <section class="my-investments">
-    <p class="my-investments__title">Mis inversiones</p>
+    <button
+      class="my-investments__title"
+      type="button"
+      @click="$emit('showtotal')"
+    >Mis inversiones</button>
 
     <loading v-if="!vpSavings">
     </loading>
@@ -65,6 +69,11 @@ export default {
 .my-investments__title {
   font-size: 17px;
   font-weight: bold;
+
+  border: 0;
+  cursor: pointer;
+  background: 0;
+  padding: 0;
 }
 
 .my-investments__subtitle {

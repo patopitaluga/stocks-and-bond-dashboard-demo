@@ -1,10 +1,9 @@
 # Stocks and bonds dashboard demo
 
-Stocks and bonds dashboard interface demo using Vue
+Stocks and bonds dashboard interface demo using Vue.
 
 ## Requirements
 - Node 17.4.0
-- Mongo DB
 
 ## Setup
 Install npm dependencies
@@ -12,14 +11,27 @@ Install npm dependencies
 npm install
 ```
 
+Set the .env file or the required environment variables (optional).
+
+## Build assets
+```
+npm run build
+```
+
 ## Start the server
-Install npm dependencies
 ```
 npm run start
 ```
 
+-------------------
+
 ## Dev environment
-Install npm dependencies
+Webpack listener:
+```
+npm run watch
+```
+
+Server in dev mode:
 ```
 npm run dev
 ```

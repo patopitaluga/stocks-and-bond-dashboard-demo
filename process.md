@@ -17,6 +17,7 @@
 - 16 Fully simulate db operations
 - 17 Fix bug: missing "amountSubscribed" property when selecting from available investments component.
 - 18 I've tied the investmentments "persistence" to a session variable, to be able to "reset" the portfolio cleaning the cookies (for demo)
+- 19 Now that I know that the persistence as sission variables is possible I'll update documentation removing possible database
 
 TODO:
 - Remove element from portfolio when amountSubscribed === 0
