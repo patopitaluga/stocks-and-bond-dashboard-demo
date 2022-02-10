@@ -16,3 +16,7 @@
 - 15 Setup the ability of sell and the new status to be displayed in other components
 - 16 Fully simulate db operations
 - 17 Fix bug: missing "amountSubscribed" property when selecting from available investments component.
+- 18 I've tied the investmentments "persistence" to a session variable, to be able to "reset" the portfolio cleaning the cookies (for demo)
+
+TODO:
+- Remove element from portfolio when amountSubscribed === 0
