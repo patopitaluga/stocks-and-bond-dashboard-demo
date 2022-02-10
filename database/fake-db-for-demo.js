@@ -117,7 +117,31 @@ const fakeDb = {
 
     alreadySubscribed.amountSubscribed -= _amount;
 
+    if (alreadySubscribed.amountSubscribed === 0) {
+      const index = _session.myPortfolio.investments.findIndex((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);;
+      if (index > -1)
+        _session.myPortfolio.investments.splice(index, 1);
+    }
+
     _session.myPortfolio.savings += _amount * investment.currentValue;
+  },
+
+  /**
+   * Used in the ctrlr-update-item controller. Updates the stock/bond currentValue.
+   *
+   * @param {string} _itemId - (optional)
+   * @param {string} _name - (optional)
+   * @param {number} _value -
+   */
+  updateItem: (_itemId, _name, _value) => {
+    if (!_itemId && !_name) throw new Error('Missing _itemId AND _name argument.');
+    if (!_value) throw new Error('Missing _amount argument.');
+    if (typeof _value !== 'number') throw new Error('Missing _value argument.');
+
+    if (_itemId)
+      fakeDb.availableInvestments.find((_eachItem) => _eachItem._id === _itemId).currentValue = _value;
+    if (_name)
+      fakeDb.availableInvestments.find((_eachItem) => _eachItem.name === _name).currentValue = _value;
   },
 };
 

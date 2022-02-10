@@ -9,7 +9,7 @@ const fakeDb = require('../../database/fake-db-for-demo.js');
  * @param {function} _next - trigger next express middleware.
  */
 module.exports = (_req, _res, _next) => {
-  if (_req.session && !_req.session.myPortfolio)
+  if (_req.session && !_req.session.myPortfolio) {
     _req.session.myPortfolio = {
       savings: 4200000, // in cents
       investments: [
@@ -27,5 +27,7 @@ module.exports = (_req, _res, _next) => {
         },
       ],
     };
+    console.log('new session')
+  }
   _next();
 };
