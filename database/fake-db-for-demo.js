@@ -40,7 +40,7 @@ const fakeDb = {
       _id: 'a4',
       name: 'BOCAN 2022',
       type: 'bond',
-      currentValue: 90, // in cents
+      currentValue: 9000, // in cents
     },
     {
       _id: 'a5',

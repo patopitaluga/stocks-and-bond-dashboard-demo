@@ -74,12 +74,26 @@ const showMeTheMoneyApp = createApp({
     });
 
     /**
-     * Triggered on @selected on the my investments or available investments components.
+     * Triggered on @selected on the my investments.
      *
      * @param {object} _itemToBeDisplayed
      */
     const mtdShowDetail = (_itemToBeDisplayed) => {
       vdDisplayingItem.value = _itemToBeDisplayed;
+    };
+
+    /**
+     * Triggered on @selected on the available investments components.
+     * Since the objects from the vdAvailableInvestments array miss the amountSubscribed prop.
+     *
+     * @param {object} _itemToBeDisplayed
+     */
+    const mtdShowDetailFromAv = (_itemToBeDisplayed) => {
+      const matchInMyInvestments = vdUserInvestments.value.find((_eachItem) => _eachItem._id === _itemToBeDisplayed._id);
+      if (matchInMyInvestments)
+        vdDisplayingItem.value = matchInMyInvestments;
+      else
+        vdDisplayingItem.value = _itemToBeDisplayed;
     };
 
     return {
@@ -88,6 +102,7 @@ const showMeTheMoneyApp = createApp({
       vdAvailableInvestments,
       vdDisplayingItem,
       mtdShowDetail,
+      mtdShowDetailFromAv,
       mtdFetchPortfolio,
     };
   },
