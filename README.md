@@ -11,7 +11,7 @@ Install npm dependencies
 npm install
 ```
 
-Set the .env file or the required environment variables (optional).
+Set the .env file or the required environment variables. If the server will be running using http protocol (instead of https in local environment) it's important to set NODE_ENV=development to disable secure cookies or session might not persist.
 
 ## Build assets
 ```
