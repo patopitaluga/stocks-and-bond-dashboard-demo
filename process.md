@@ -15,3 +15,4 @@
 - 15 Setup the ability to buy and the new status to be displayed in other components
 - 15 Setup the ability of sell and the new status to be displayed in other components
 - 16 Fully simulate db operations
+- 17 Fix bug: missing "amountSubscribed" property when selecting from available investments component.
