@@ -26,15 +26,23 @@
         :vp-investments="vdUserInvestments"
       >
       </my-investments>
-      <other-investments>
+      <other-investments
+        :vp-items="vdAvailableInvestments"
+      >
       </other-investments>
     </aside>
     <main class="main">
-      <total>
+      <total
+        :vp-portfolio="vdUserInvestments"
+      >
       </total>
     </main>
   </div>
 </div>
 <script src="/dist/script.js"></script>
+
+<!-- These scripts might be added to the bundle for production -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
 </body>
 </html>

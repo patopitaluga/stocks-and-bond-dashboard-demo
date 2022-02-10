@@ -19,6 +19,7 @@ const showMeTheMoneyApp = createApp({
   setup() {
     const vdUserSavings = ref(null); // Number
     const vdUserInvestments = ref(null); // Array
+    const vdAvailableInvestments = ref(null); // Array
 
     /**
      * Triggered on mounted
@@ -31,9 +32,28 @@ const showMeTheMoneyApp = createApp({
         },
       })
         .then(async(_responseRaw) => {
+          const responseObject = await _responseRaw.json();
+          vdUserSavings.value = responseObject.savings;
+          vdUserInvestments.value = responseObject.investments;
+        })
+        .catch((_err) => {
+          console.log(_err);
+        });
+    };
+
+    /**
+     * Triggered on mounted
+     */
+    const fetchAvailableInvestments = () => {
+      fetch('/api/available-investments', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(async(_responseRaw) => {
           const responseArray = await _responseRaw.json();
-          vdUserSavings.value = responseArray.savings;
-          vdUserInvestments.value = responseArray.investments;
+          vdAvailableInvestments.value = responseArray;
         })
         .catch((_err) => {
           console.log(_err);
@@ -42,11 +62,13 @@ const showMeTheMoneyApp = createApp({
 
     onMounted(() => {
       fetchInitialData();
+      fetchAvailableInvestments();
     });
 
     return {
       vdUserSavings,
       vdUserInvestments,
+      vdAvailableInvestments,
     };
   },
 });

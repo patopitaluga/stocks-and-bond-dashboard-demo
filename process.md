@@ -8,3 +8,6 @@
 - 8 Set fetch strategy to get information from api. The root component will fetch all the information and will pass it to components as props.
 - 9 Initial fetch of placeholder hardcoded endpoint to test pipeline
 - 10 Set nodemon as npm run dev script since I'll be updating server endpoints a lot
+- 11 Sketch api queries and presentation for vue component information.
+- 12 Improve information presentation on screen just to see things clearly
+- 13 Insert pie chart to test space using d3 library, I'm setting it up using a cdn to speed up the development
