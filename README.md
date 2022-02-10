@@ -35,3 +35,13 @@ Server in dev mode:
 ```
 npm run dev
 ```
+
+------------------
+
+## External api endpoints
+POST POST to /api/update body { itemId: 'asd98hasdh0', value: 6000 } OR { name: 'Aluar', value: 6000 }
+
+To run a fast demo I created a terminal tool that updates two different items. Might be run from terminal
+```
+node update-value-demo
+```
