@@ -39,8 +39,15 @@ export default {
       :key="_eachItem.name"
     >
       <li class="my-investments__items">
-        <span>{{ _eachItem.name }}</span>
-        <span class="my-investments__items__subscribed">({{ _eachItem.amountSubscribed }} unidades)</span>
+        <button
+          type="button"
+          @click="$emit('selected', _eachItem)"
+        >{{ _eachItem.name }}</button>
+        <button
+          class="my-investments__items__subscribed"
+          type="button"
+          @click="$emit('selected', _eachItem)"
+        >({{ _eachItem.amountSubscribed }} unidades)</button>
       </li>
     </ul>
   </section>

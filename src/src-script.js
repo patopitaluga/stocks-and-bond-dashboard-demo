@@ -9,17 +9,20 @@ import { ref } from 'vue';
 import myInvestments from '../vue-components/vc-my-investments/vc-my-investments.vue';
 import otherInvestments from '../vue-components/vc-other-investments/vc-other-investments.vue';
 import total from '../vue-components/vc-total/vc-total.vue';
+import itemDetail from '../vue-components/vc-item-detail/vc-item-detail.vue';
 
 const showMeTheMoneyApp = createApp({
   components: {
     'my-investments': myInvestments,
     'other-investments': otherInvestments,
     'total': total,
+    'item-detail': itemDetail,
   },
   setup() {
     const vdUserSavings = ref(null); // Number
     const vdUserInvestments = ref(null); // Array
     const vdAvailableInvestments = ref(null); // Array
+    const vdDisplayingItem = ref(null); // Array
 
     /**
      * Triggered on mounted
@@ -65,10 +68,21 @@ const showMeTheMoneyApp = createApp({
       fetchAvailableInvestments();
     });
 
+    /**
+     * Triggered on @selected on the my investments or available investments components.
+     *
+     * @param {object} _itemToBeDisplayed
+     */
+    const mtdShowDetail = (_itemToBeDisplayed) => {
+      vdDisplayingItem.value = _itemToBeDisplayed;
+    };
+
     return {
       vdUserSavings,
       vdUserInvestments,
       vdAvailableInvestments,
+      vdDisplayingItem,
+      mtdShowDetail,
     };
   },
 });

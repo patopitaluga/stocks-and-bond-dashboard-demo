@@ -11,3 +11,4 @@
 - 11 Sketch api queries and presentation for vue component information.
 - 12 Improve information presentation on screen just to see things clearly
 - 13 Insert pie chart to test space using d3 library, I'm setting it up using a cdn to speed up the development
+- 14 Added detail component to display individual stocks/bonds with option to buy
