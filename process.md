@@ -19,6 +19,4 @@
 - 18 I've tied the investmentments "persistence" to a session variable, to be able to "reset" the portfolio cleaning the cookies (for demo)
 - 19 Now that I know that the persistence as sission variables is possible I'll update documentation removing possible database
 - 20 Added required endpoint to update a value.
-
-TODO:
-- Remove element from portfolio when amountSubscribed === 0
+- 21 Setup tests
