@@ -5,6 +5,9 @@ body {
   font-size: 13px;
 }
 
+/**
+ * Critical CSS. Structural parts.
+ */
 .container {
   box-sizing: border-box;
   display: block;
@@ -37,4 +40,16 @@ body {
     padding-left: 8px;
     width: 66.6666%;
   }
+}
+
+/**
+ * Form elements used in many components.
+ */
+.btn {
+  background: #e9e9e9;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 6px 10px;
+  margin-left: 16px;
 }

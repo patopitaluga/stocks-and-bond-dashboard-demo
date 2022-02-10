@@ -17,13 +17,21 @@ export default {
     <loading v-if="!vpItems">
     </loading>
     <ul
-      class="my-investments__list"
+      class="other-investments__list"
       v-for="_eachItem in vpItems"
       :key="_eachItem.name"
     >
-      <li class="my-investments__items">
-        <span>{{ _eachItem.name }}</span>
-        <span class="my-investments__items__subscribed">{{ $filters.fltrFormatMoney(_eachItem.currentValue) }}/unidad</span>
+      <li class="other-investments__items">
+        <button
+          class="other-investments__items__name"
+          type="button"
+          @click="$emit('selected', _eachItem)"
+        >{{ _eachItem.name }}</button>
+        <button
+          class="other-investments__items__value"
+          type="button"
+          @click="$emit('selected', _eachItem)"
+        >{{ $filters.fltrFormatMoney(_eachItem.currentValue) }} / unidad</button>
       </li>
     </ul>
   </section>
@@ -35,5 +43,37 @@ export default {
   border-radius: 8px;
   margin-bottom: 16px;
   padding: 8px 16px;
+}
+
+.other-investments__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.other-investments__items {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.other-investments__items__name {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  margin-left: 0;
+  margin-right: auto;
+  padding: 0;
+  text-align: left;
+}
+
+.other-investments__items__value {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 0;
+  min-width: 105px;
+  padding: 0 0 0 8px;
+  text-align: right;
 }
 </style>
