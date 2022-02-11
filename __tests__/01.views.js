@@ -12,6 +12,14 @@ describe('Frontend views', () => {
     it('Index page should work', async() => {
       const httpResponseIndex = await axios.get(testingUrl + '/');
 
-      await expect(httpResponseIndex).resolves.toMatch(true);
+      await expect(String(httpResponseIndex.status)).toMatch('200');
+    });
+  if (true) // to turn on/off tests easily
+    it('A non existing view should get 404', async() => {
+      const httpResponseIndex = await axios.get(testingUrl + '/asd', {
+        validateStatus: () => true // allow 400 without triggering .catch
+      });
+
+      await expect(String(httpResponseIndex.status)).toMatch('404');
     });
 }, 120000);
