@@ -118,9 +118,12 @@ export default {
     v-if="vpItem && vpItem.name"
     class="detail"
   >
-    <p>{{ fltrDisplayType(vpItem.type) }}</p>
-    <p>{{ vpItem.name }}</p>
-    <p>Cotización: {{ $filters.fltrFormatMoney(vpItem.currentValue) }} / unidad</p>
+    <p class="detail__subtitle">{{ fltrDisplayType(vpItem.type) }}</p>
+    <p class="detail__title">{{ vpItem.name }}</p>
+
+    <hr/>
+
+    <p><strong>Cotización:</strong> {{ $filters.fltrFormatMoney(vpItem.currentValue) }} / unidad</p>
 
     <p
       v-if="vdNotifyAction"
@@ -128,26 +131,33 @@ export default {
     >{{ vdNotifyAction }}</p>
 
     <div v-if="!vdNotifyAction">
-      <p v-if="vpItem.amountSubscribed">Cantidad adquirida: {{ vpItem.amountSubscribed }} unidades</p>
-      <p v-if="vpItem.amountSubscribed">Valor total: {{ $filters.fltrFormatMoney(vpItem.amountSubscribed * vpItem.currentValue) }}</p>
+      <p v-if="vpItem.amountSubscribed"><strong>Cantidad adquirida</strong>: {{ vpItem.amountSubscribed }} unidades</p>
+      <p v-if="vpItem.amountSubscribed"><strong>Valor total</strong>: {{ $filters.fltrFormatMoney(vpItem.amountSubscribed * vpItem.currentValue) }}</p>
 
-      <p>Comprar</p>
-      <input
-        type="number"
-        v-model="vdBuyAmount"
-        min="0"
-      />
-      <button
-        v-if="vdBuyAmount > 0"
-        class="btn"
-        type="button"
-        @click="mtdBuy"
+      <hr/>
+
+      <div style="margin-top: 16px;">
+        <p class="detail__subtitle">Comprar</p>
+        <input
+          type="number"
+          v-model="vdBuyAmount"
+          min="0"
+        />
+        <button
+          v-if="vdBuyAmount > 0"
+          class="btn"
+          type="button"
+          @click="mtdBuy"
+        >
+          Realizar compra
+        </button>
+      </div>
+
+      <div
+        v-if="vpItem.amountSubscribed"
+        style="margin-top: 16px;"
       >
-        Realizar compra
-      </button>
-
-      <div v-if="vpItem.amountSubscribed">
-        <p>Vender</p>
+        <p class="detail__subtitle">Vender</p>
         <input
           type="number"
           v-model="vdSellAmount"
@@ -168,7 +178,21 @@ export default {
   </section>
 </template>
 
-<style>
+<style lang="scss">
+@import '../../src/mixins.scss';
+
+.detail {
+  @include widget;
+}
+
+.detail__subtitle {
+  @include subtitle;
+}
+
+.detail__title {
+  @include title;
+}
+
 .detail__notification {
   border: 1px black solid;
   font-size:  14px;

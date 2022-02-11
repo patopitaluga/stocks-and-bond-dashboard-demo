@@ -20,3 +20,6 @@
 - 19 Now that I know that the persistence as sission variables is possible I'll update documentation removing possible database
 - 20 Added required endpoint to update a value.
 - 21 Setup tests
+- 22 Improve design details
+
+TODO: Disallow negative savings? Set linter?
