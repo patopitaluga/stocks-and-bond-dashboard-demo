@@ -82,20 +82,22 @@ const fakeDb = {
     if (_amount === 0) return;
 
     const investment = fakeDb.availableInvestments.find((_eachInvestment) => _eachInvestment._id === _itemId);
-
-    const alreadySubscribed = _session.myPortfolio.investments.find((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);
-    if (alreadySubscribed)
-      alreadySubscribed.amountSubscribed += _amount;
-    else
-      _session.myPortfolio.investments.push({
-        amountSubscribed: _amount,
-        _id: investment._id,
-        name: investment.name,
-        type: investment.type,
-        currentValue: investment.currentValue,
-      });
+    if (!investment) return null;
 
     _session.myPortfolio.savings -= _amount * investment.currentValue;
+
+    const alreadySubscribed = _session.myPortfolio.investments.find((_eachItemInPortfolio) => _eachItemInPortfolio._id === _itemId);
+    if (alreadySubscribed) {
+      alreadySubscribed.amountSubscribed += _amount;
+      return alreadySubscribed;
+    } else {
+      const newInvestmentState = {
+        amountSubscribed: _amount,
+        _id: investment._id,
+      };
+      _session.myPortfolio.investments.push(newInvestmentState);
+      return newInvestmentState;
+    }
   },
 
   /**
