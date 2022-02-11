@@ -1,0 +1,25 @@
+- 1 Setup new node project with npm init. Setup gitignore and README.md documentation.
+- 2 install express server.
+- 3 Setup express server to serve public files, frontend routes sending an html file and a demo api endpoint.
+- 4 Also set body-parser to be able to read POST variables easily.
+- 5 Setup webpack.config.js and dependencies to build vue components and sass
+- 6 Set a couple of demo Vue components to be sure that the build process is working fine
+- 7 Set an initial grid design to be able to view components while developing
+- 8 Set fetch strategy to get information from api. The root component will fetch all the information and will pass it to components as props.
+- 9 Initial fetch of placeholder hardcoded endpoint to test pipeline
+- 10 Set nodemon as npm run dev script since I'll be updating server endpoints a lot
+- 11 Sketch api queries and presentation for vue component information.
+- 12 Improve information presentation on screen just to see things clearly
+- 13 Insert pie chart to test space using d3 library, I'm setting it up using a cdn to speed up the development
+- 14 Added detail component to display individual stocks/bonds with option to buy
+- 15 Setup the ability to buy and the new status to be displayed in other components
+- 15 Setup the ability of sell and the new status to be displayed in other components
+- 16 Fully simulate db operations
+- 17 Fix bug: missing "amountSubscribed" property when selecting from available investments component.
+- 18 I've tied the investmentments "persistence" to a session variable, to be able to "reset" the portfolio cleaning the cookies (for demo)
+- 19 Now that I know that the persistence as sission variables is possible I'll update documentation removing possible database
+- 20 Added required endpoint to update a value.
+- 21 Setup tests
+- 22 Improve design details
+
+TODO: Disallow negative savings? Set linter?

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es-es">
+<head>
+<meta charset="utf-8"/>
+<title>Show me the money!</title>
+
+<meta
+  name="viewport"
+  content="width=device-width, height=device-height, initial-scale=1.0, viewport-fit=cover"
+/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+<style>
+  [v-cloak] {
+    display: none !important
+  }
+  /* Hide Vue while loading */
+</style>
+<link rel="stylesheet" href="/dist/style.css"/>
+</head>
+<body>
+<div id="app-container">
+  <div class="container">
+    <aside class="sidebar">
+      <my-investments
+        :vp-savings="vdUserSavings"
+        :vp-investments="vdUserInvestments"
+        @selected="mtdShowDetail"
+        @showtotal="mtdShowTotal"
+      >
+      </my-investments>
+      <other-investments
+        :vp-items="vdAvailableInvestments"
+        @selected="mtdShowDetailFromAv"
+      >
+      </other-investments>
+    </aside>
+    <main class="main">
+      <total
+        v-if="!vdDisplayingItem || !vdDisplayingItem.name"
+        :vp-portfolio="vdUserInvestments"
+      >
+      </total>
+      <item-detail
+        v-if="vdDisplayingItem && vdDisplayingItem.name"
+        :vp-item="vdDisplayingItem"
+        @operation="mtdFetchPortfolio"
+      >
+      </item-detail>
+    </main>
+  </div>
+</div>
+<script src="/dist/script.js"></script>
+
+<!-- These scripts might be added to the bundle for production -->
+<script src="https://d3js.org/d3.v4.js"></script>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+body {
+  margin: 16px 0 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+}
+
+/**
+ * Critical CSS. Structural parts.
+ */
+.container {
+  box-sizing: border-box;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1024px;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  @media only screen and (min-width: 768px) {
+    display: flex;
+  }
+}
+
+.sidebar {
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    box-sizing: border-box;
+    padding-right: 8px;
+    width: 33.3333%;
+  }
+}
+
+.main {
+  width: 100%;
+
+  @media only screen and (min-width: 768px) {
+    box-sizing: border-box;
+    padding-left: 8px;
+    width: 66.6666%;
+  }
+}
+
+/**
+ * Form elements used in many components.
+ */
+.btn {
+  background: #c9c9c9;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 6px 10px;
+  margin-left: 16px;
+}
+
+input[type=text],
+input[type=number] {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  padding: 6px 16px;
+}
