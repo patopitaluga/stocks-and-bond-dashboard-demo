@@ -58,18 +58,16 @@ export default {
   </section>
 </template>
 
-<style>
+<style lang="scss">
+@import '../../src/mixins.scss';
+
 .my-investments {
-  background: #eee;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  padding: 8px 16px;
+  @include widget;
 }
 
 .my-investments__title {
-  font-size: 17px;
-  font-weight: bold;
-
+  @include title;
+  // it's a button
   border: 0;
   cursor: pointer;
   background: 0;
@@ -77,8 +75,7 @@ export default {
 }
 
 .my-investments__subtitle {
-  font-size: 16px;
-  font-weight: bold;
+  @include subtitle;
 }
 
 .my-investments__list {

@@ -14,6 +14,7 @@ export default {
 .loading {
   height: 50px;
   width: 50px;
+  margin: 24px auto;
 }
 
 .loading__circle {
@@ -33,7 +34,7 @@ export default {
 .loading__circle::after {
   box-sizing: border-box;
   border-radius: 50%;
-  border: 5px blue solid;
+  border: 5px #333 solid;
   content: '';
   display: block;
   height: 50px;

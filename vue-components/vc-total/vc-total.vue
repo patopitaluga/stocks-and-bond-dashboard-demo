@@ -33,8 +33,8 @@ export default {
 
 <template>
   <section class="total">
-    <p>Valor total cartera</p>
-    <p>{{ $filters.fltrFormatMoney(cptdTotal) }}</p>
+    <p class="total__title">Valor total cartera</p>
+    <p style="font-size: 18px;">{{ $filters.fltrFormatMoney(cptdTotal) }}</p>
     <div>
       <div
         id="piechart"
@@ -44,12 +44,15 @@ export default {
   </section>
 </template>
 
-<style>
+<style lang="scss">
+@import '../../src/mixins.scss';
+
 .total {
-  background: #eee;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  padding: 8px 16px;
+  @include widget;
+}
+
+.total__title {
+  @include title;
 }
 
 .total__pie-chart {

@@ -27,7 +27,7 @@ module.exports = (_req, _res, _next) => {
         },
       ],
     };
-    console.log('new session')
+    // console.log('new session');
   }
   _next();
 };

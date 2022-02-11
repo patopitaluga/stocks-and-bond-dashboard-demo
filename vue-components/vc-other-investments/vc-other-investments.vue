@@ -13,7 +13,7 @@ export default {
 
 <template>
   <section class="other-investments">
-    <p>Inversiones disponibles</p>
+    <p class="other-investments__title">Inversiones disponibles</p>
     <loading v-if="!vpItems">
     </loading>
     <ul
@@ -37,12 +37,15 @@ export default {
   </section>
 </template>
 
-<style>
+<style lang="scss">
+@import '../../src/mixins.scss';
+
 .other-investments {
-  background: #eee;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  padding: 8px 16px;
+  @include widget;
+}
+
+.other-investments__title {
+  @include title;
 }
 
 .other-investments__list {
@@ -69,6 +72,7 @@ export default {
 .other-investments__items__value {
   background: transparent;
   border: 0;
+  color: #333;
   cursor: pointer;
   margin-left: auto;
   margin-right: 0;

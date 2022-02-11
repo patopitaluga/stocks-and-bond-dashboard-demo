@@ -1,0 +1,21 @@
+@mixin widget {
+  background: #eee;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 16px;
+}
+
+@mixin title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 12px;
+}
+
+@mixin subtitle {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 0;
+}
+
+
